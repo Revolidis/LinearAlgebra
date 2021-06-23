@@ -2,8 +2,8 @@
 //
 #include "matrixClass.h"
 
-int col = 3;
-int row = 3;
+int col = 5;
+int row = 5;
 int num = 1;
 
 int main()
@@ -11,7 +11,8 @@ int main()
 	
 	matrixClass <int> object;
 	int* x=object.CreateM(row, col, num);
-	std::cout << x[1];
+	int y = object.getElement(-1,-3);
+	std::cout << y;
 	std::cin.get();
 	
 	//std::cout << x[0] << x[1] << std::endl;
