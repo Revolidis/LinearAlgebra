@@ -11,8 +11,10 @@ int main()
 	
 	matrixClass <int> object;
 	int* x=object.CreateM(row, col, num);
-	int y = object.getElement(-1,-3);
-	std::cout << y;
+	int y = object.getElement(1,1);
+	object.printMat(x);
+	object.setElement(1, -1, 50);
+	object.printMat(x);
 	std::cin.get();
 	
 	//std::cout << x[0] << x[1] << std::endl;

@@ -11,13 +11,14 @@ public:
     {
         std::cout << "Class Loaded" << std::endl << std::endl;
     }
-    //Create Matrix Methods
+    //Create and print Matrix Methods
     int* CreateM(unsigned int nRow,unsigned int nCol, T num);
-
+    void printMat(T* mat);
     //Access Element Methods
     T getElement(unsigned row, unsigned int col);
+    int* setElement(unsigned row, unsigned int col,T el);
 
-    int m_nRows, m_nCol, nElements;
+    unsigned int m_nRows, m_nCol, nElements;
     //destructor
     ~matrixClass();
 private:
@@ -27,7 +28,7 @@ private:
     
 };
 
-//Methods
+//Matrix Creation and print methods
 template<typename T>
 int* matrixClass<T>::CreateM(unsigned int nRow, unsigned int nCol, T num)
 {
@@ -45,25 +46,26 @@ int* matrixClass<T>::CreateM(unsigned int nRow, unsigned int nCol, T num)
             num += 1;
         }
     }
-
+    return matrix;
+}
+template<typename T>
+void matrixClass<T>::printMat(T* mat)
+{
     //print fun
-    for (unsigned int row = 0; row < nRow; row++)
+    for (unsigned int row = 0; row < m_nRows; row++)
     {
-        for (unsigned int col = 0; col < nCol; col++)
+        for (unsigned int col = 0; col < m_nCol; col++)
         {
-            std::cout << matrix[col + row * nCol] << "  ";
+            std::cout << mat[col + row * m_nCol] << "  ";
         }
         std::cout << std::endl;
     }
-    return matrix;
 }
-
-
 /**************************************************************************************
 ***********************Access Element Methods******************************************/
 
 template<typename T>
-T matrixClass<T>::getElement(unsigned row, unsigned int col)
+T matrixClass<T>::getElement(unsigned row, unsigned int col) //finds and prints an element
 {
     int linearIndex = getLinInd(row, col); //Gets linear index of element
     if (linearIndex >=0)
@@ -73,8 +75,18 @@ T matrixClass<T>::getElement(unsigned row, unsigned int col)
     else
     {
         std::cout << "(getElement) [ERROR]: Unable to get element" << std::endl;
-        return 0.0;
+        return 0;
     }
+}
+template <typename T>
+int* matrixClass<T>::setElement(unsigned row, unsigned int col, T el)
+{
+    int linearIndex = getLinInd(row, col);
+        if (linearIndex >= 0)
+            matrix[linearIndex] = el;
+            else
+            std::cout << "<setElement> [ERROR]: Unable to change element." <<std::endl;
+        return matrix;
 }
 
 /**************************************************************************************
@@ -89,11 +101,11 @@ int matrixClass<T>::getLinInd(unsigned int row, unsigned int col)
     }
     else
     {
-        if (row > m_nRows) 
+        if (row >= m_nRows)
         {
             std::cout << "(getLinInd) [ERROR]: Row cannot exceed matrix dimensions." << std::endl;
         }
-        if (col > m_nCol) 
+        if (col >= m_nCol) 
         {
             std::cout << "(getLinInd) [ERROR]: Collumn cannot exceed matrix dimensions." << std::endl;
         }
