@@ -11,14 +11,19 @@ public:
     {
         std::cout << "Class Loaded" << std::endl << std::endl;
     }
-    //Methods
+    //Create Matrix Methods
     int* CreateM(unsigned int nRow,unsigned int nCol, T num);
+
+    //Access Element Methods
+    
 
    
     //destructor
     ~matrixClass();
 private:
     int* matrix;
+  
+    
 };
 
 //Methods
@@ -29,26 +34,31 @@ int* matrixClass<T>::CreateM(unsigned int nRow, unsigned int nCol, T num)
     to be used in a function in the source code*/
     //memory allocation
     matrix = new int[nRow * nCol];
-    for (unsigned int y = 0; y < nRow; y++)
+    for (unsigned int row = 0; row < nRow; row++)
     {
-        for (unsigned int x = 0; x < nCol; x++)
+        for (unsigned int col = 0; col < nCol; col++)
         {
-            matrix[x + y * nRow] = num;   //data loop
+            matrix[col + row * nCol] = num;   //data loop
             num += 1;
         }
     }
 
     //print fun
-    for (unsigned int i = 0; i < nRow; i++)
+    for (unsigned int row = 0; row < nRow; row++)
     {
-        for (unsigned int j = 0; j < nCol; j++)
+        for (unsigned int col = 0; col < nCol; col++)
         {
-            std::cout << matrix[j + i * nRow] << "  ";
+            std::cout << matrix[col + row * nCol] << "  ";
         }
         std::cout << std::endl;
     }
     return matrix;
 }
+
+
+/**************************************************************************************
+***********************Access Element Methods******************************************/
+
 
 //Destructor
 template<typename T>

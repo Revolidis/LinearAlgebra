@@ -12,6 +12,7 @@ int main()
 	matrixClass <int> object;
 	int* x=object.CreateM(row, col, num);
 	std::cout << x[1];
+	std::cin.get();
 	
 	//std::cout << x[0] << x[1] << std::endl;
 }
