@@ -6,29 +6,41 @@ template<typename T>
 class matrixClass
 {
 public:
-    //constructors
-    matrixClass()
-    {
-        std::cout << "Class Loaded" << std::endl << std::endl;
-    }
+    //constructors / Initialisation
+    matrixClass();
+   
     //Create and print Matrix Methods
     int* CreateM(unsigned int nRow,unsigned int nCol, T num);
     void printMat(T* mat);
+    
     //Access Element Methods
     T getElement(unsigned row, unsigned int col);
     int* setElement(unsigned row, unsigned int col,T el);
+    int getRows();
+    int getCol();
 
-    unsigned int m_nRows, m_nCol, nElements;
+    
     //destructor
     ~matrixClass();
 private:
     int getLinInd(unsigned int row, unsigned int col);
 private:
     int* matrix;
-    
+    unsigned int m_nRows, m_nCol, nElements;
 };
+/***************************************************************************************************
+******************************************Constructor**********************************************/
+template<typename T>
+matrixClass<T>::matrixClass()
+{
+    std::cout << "Linear Algebra Class Loaded" << std::endl << std::endl;
+    matrix = new int[1];
+    matrix[0] = 0;
+    std::cout << "Matrix Initialized" << std::endl << "A = [" << matrix[0] << "]" << std::endl;
+}
 
-//Matrix Creation and print methods
+/**************************************************************************************************
+********************************Matrix Creation and print methods**********************************/
 template<typename T>
 int* matrixClass<T>::CreateM(unsigned int nRow, unsigned int nCol, T num)
 {
@@ -89,6 +101,17 @@ int* matrixClass<T>::setElement(unsigned row, unsigned int col, T el)
         return matrix;
 }
 
+template<typename T>
+int matrixClass<T>::getRows()
+{
+    return m_nRows;
+}
+
+template<typename T>
+int matrixClass<T>::getCol()
+{
+    return m_nCol;
+}
 /**************************************************************************************
 **************************Private Methods**********************************************/
 template<typename T>

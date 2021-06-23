@@ -13,7 +13,7 @@ int main()
 	int* x=object.CreateM(row, col, num);
 	int y = object.getElement(1,1);
 	object.printMat(x);
-	object.setElement(1, -1, 50);
+	object.setElement(1, 10, 50);
 	object.printMat(x);
 	std::cin.get();
 	
