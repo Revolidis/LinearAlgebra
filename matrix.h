@@ -16,6 +16,8 @@ public:
     matrix(unsigned int nRow, unsigned int nCol)
     {
         std::cout << "<matrix> Initializing" << std::endl;
+        rows1 = 0;
+        cols1 = 0;
         rows = nRow;
         cols = nCol;
         tmatrix = new T[rows * cols];
@@ -25,7 +27,7 @@ public:
     {
         std::cout << "<matrix> Initializing" << std::endl;
         int size = nSize;
-        tmatrix = new T[rows * cols];
+        tmatrix = new T[nSize];
         std::cout << "<matrix> <<" << size << "x" << size << " Matrix has Initialized" << std::endl;
     }
 
@@ -55,7 +57,7 @@ public:
         {
             for (int col = 0; col < cols; col++)
             {
-                std::cout<< other.tmatrix[row * cols + col];
+                std::cout<< other.tmatrix[row * cols + col]<<" ";
             }
             std::cout << std::endl;
         }
@@ -76,9 +78,80 @@ public:
         tmatrix[row * cols + col] = element;
         return tmatrix;
     }
+    /****************************************operations*****************************************/
+    T matrixSum(const matrix& other, const matrix& mat)
+    {
+        /*******************************************************ADDITION*******************************************/
 
+        static int nRows=other.rows;
+        static int nCols=other.cols;
+        static int nRows1 = mat.rows;
+        static int nCols1 = mat.cols;
+
+        if ((nRows == nRows1) && (nCols == nCols1))
+        {
+            tmatrix = new T[long(nRows * nCols)];
+            for (int row = 0; row < nRows; row++)
+            {
+                for (int col = 0; col < nCols; col++)
+                {
+                    tmatrix[row * nCols + col] = other.tmatrix[row * nCols + col]+ mat.tmatrix[row * nCols1 + col];
+                }
+
+            }
+        }
+        else
+        {
+            std::cout << "<matrixSum> [ERROR]: Matric dimension must match!" << std::endl;
+        }
+        return  *tmatrix;
+    }
+
+    T matrixSub(const matrix& other, const matrix& mat)
+    {
+        /*******************************************************SUBTRACTION*******************************************/
+        static int nRows = other.rows;
+        static int nCols = other.cols;
+        static int nRows1 = mat.rows;
+        static int nCols1 = mat.cols;
+
+        if ((nRows == nRows1) && (nCols == nCols1))
+        {
+            tmatrix = new T[long(nRows * nCols)];
+            for (int row = 0; row < nRows; row++)
+            {
+                for (int col = 0; col < nCols; col++)
+                {
+                    tmatrix[row * nCols + col] = other.tmatrix[row * nCols + col] - mat.tmatrix[row * nCols + col];
+                }
+
+            }
+        }
+        else
+        {
+            std::cout << "<matrixSub> [ERROR]: Matric dimension must match!" << std::endl;
+        }
+        return  *tmatrix;
+    }
+
+    T matrixMul(T num,const matrix& mat)
+    {
+        static int nRows = mat.rows;
+        static int nCols = mat.cols;
+        tmatrix = new T[nRows * nCols];
+        for (int row = 0; row < nRows; row++)
+        {
+            for (int col = 0; col < nCols; col++)
+            {
+                tmatrix[row * nCols + col] = num * mat.tmatrix[row * nCols + col];
+            }
+
+        }
+        return *tmatrix;
+    }
+  
 private:
     T* tmatrix;
-    int rows, cols;
+    int rows, cols, rows1, cols1;
 };
     

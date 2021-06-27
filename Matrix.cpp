@@ -2,25 +2,38 @@
 //
 #include "matrix.h"
 
-int row = 1;
-int col = 1;
+int row =3;
+int col = 3;
 int row1 = 3;
 int col1 = 3;
 int main()
 {
 	matrix <int> obj(row, col);
 	matrix <int> obj1(row1,col1);
-	obj1.setElement(obj1,0,0,0);
-	obj1.setElement(obj1, 0, 0, 1);
-	obj1.setElement(obj1, 0, 0, 2);
-	obj.setElement(obj, 5, 0, 0);
-	obj1.setElement(obj1, 0, 1, 0);
-	obj1.setElement(obj1, 0, 2, 0);
-	obj1.setElement(obj1, 0, 1, 1);
-	obj1.setElement(obj1, 0, 1, 2);
-	obj1.setElement(obj1, 0, 2, 2);
-	obj1.setElement(obj1, 0, 2, 1);
+	matrix <int> obj3(row,col);
+	obj1.setElement(obj1,1,0,0);
+	obj1.setElement(obj1, 1, 0, 1);
+	obj1.setElement(obj1, 1, 0, 2);
+	obj1.setElement(obj1, 1, 1, 0);
+	obj1.setElement(obj1, 1, 2, 0);
+	obj1.setElement(obj1, 1, 1, 1);
+	obj1.setElement(obj1, 1, 1, 2);
+	obj1.setElement(obj1, 1, 2, 2);
+	obj1.setElement(obj1, 1, 2, 1);
+	obj1.printMatrix(obj1);
+	obj.setElement(obj, 2, 0, 0);
+	obj.setElement(obj, 2, 0, 1);
+	obj.setElement(obj, 2, 0, 2);
+	obj.setElement(obj, 2, 1, 0);
+	obj.setElement(obj, 2, 2, 0);
+	obj.setElement(obj, 2, 1, 1);
+	obj.setElement(obj, 2, 1, 2);
+	obj.setElement(obj, 2, 2, 2);
+	obj.setElement(obj, 2, 2, 1);
 	obj.printMatrix(obj);
-	obj.printMatrix(obj1);
+	
+	
+	int x = obj3.matrixMul(6, obj);
+	obj3.printMatrix(obj3);
 	std::cin.get();
 }
